@@ -10,3 +10,4 @@ Game Mechanics:
       - Consumable mechanic: recovery item with a steep downside, or gradual downside that increases with continuous use
       - Weapon types: fast, medium, slow
       - Cosmetic customization
+      - Smaller, faster moving sprites. not as sluggish even with the dark souls inspiration
