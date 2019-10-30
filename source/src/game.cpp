@@ -4,6 +4,8 @@
 #include "graphics.h"
 #include "input.h"
 
+#include <algorithm>
+
 namespace {
 	const int FPS = 50;
 	const int MAX_FRAME_TIME = 5 * 1000 / FPS;

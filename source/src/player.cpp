@@ -1,5 +1,6 @@
 #include "graphics.h"
 #include "player.h"
+#include "utils.h"
 
 namespace player_constants {
 	const float WALK_SPEED = 0.2f;
@@ -13,13 +14,13 @@ namespace player_constants {
 Player::Player() {}
 
 Player::Player(Graphics &graphics, Vector2 spawnPoint) :
-	AnimatedSprite(graphics, player_constants::CHAR_IMG, 0, 0, 16, 16, spawnPoint.x, spawnPoint.y, 100),
+	AnimatedSprite(graphics, Utils::CorrectPathForSystem(player_constants::CHAR_IMG), 0, 0, 16, 16, spawnPoint.x, spawnPoint.y, 100),
 	_dx(0),
 	_dy(0),
 	_facing(RIGHT),
 	_grounded(false)
 {
-	graphics.loadImage(player_constants::CHAR_IMG);
+	graphics.loadImage(Utils::CorrectPathForSystem(player_constants::CHAR_IMG));
 	this->setupAnimations();
 	this->playAnimation("RunRight");
 }

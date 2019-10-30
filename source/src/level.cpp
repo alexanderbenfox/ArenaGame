@@ -14,7 +14,7 @@
 
 #include "graphics.h"
 #include "level.h"
-#include "tinyxml2.h"
+#include <../external/tinyxml2.h>
 #include "utils.h"
 
 using namespace tinyxml2;
@@ -41,7 +41,8 @@ void Level::loadMap(std::string mapName, Graphics &graphics) {
 	
 	printf("%s\n",ss.str().c_str());
 	
-	doc.LoadFile(ss.str().c_str());
+  auto levelFilePath = Utils::CorrectPathForSystem(ss.str().c_str());
+	doc.LoadFile(levelFilePath.c_str());
 	
 	XMLElement* mapNode = doc.FirstChildElement("map"); // first child element within .tmx
 	
@@ -68,7 +69,9 @@ void Level::loadMap(std::string mapName, Graphics &graphics) {
 			XMLDocument ts;
 			const char* tilesetPath;
 			pTileset->QueryStringAttribute("source", &tilesetPath);
-			ts.LoadFile(tilesetPath);
+      auto tilesetPathStr = Utils::CorrectPathForSystem(tilesetPath);
+
+			ts.LoadFile(tilesetPathStr.c_str());
 		
 			//Get image source for tileset file
 			XMLElement* tilesetNode = ts.FirstChildElement("tileset");
