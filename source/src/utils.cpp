@@ -1,5 +1,10 @@
 #include "utils.h"
-#include <direct.h>
+#ifdef _WIN32
+	#include <direct.h>
+	#define getcwd _getcwd // stupid MSFT "deprecation" warning
+#elif __APPLE__
+	#include <unistd.h>
+#endif
 #include <algorithm>
 
 unsigned int Utils::split(const std::string &txt, std::vector<std::string> &strs, char ch) {
@@ -22,8 +27,12 @@ unsigned int Utils::split(const std::string &txt, std::vector<std::string> &strs
 
 std::string Utils::GetWorkingPath()
 {
-  char temp[256];
-  return (_getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
+	char temp[256];
+	#ifdef _WIN32
+		return (_getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
+	#elif __APPLE__
+		return (getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
+	#endif
 }
 
 

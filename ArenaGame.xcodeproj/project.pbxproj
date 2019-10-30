@@ -19,6 +19,7 @@
 		929B0718235F993B00F3C99A /* graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 929B0716235F993B00F3C99A /* graphics.cpp */; };
 		929B071B235FA10C00F3C99A /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 929B071A235FA10C00F3C99A /* game.cpp */; };
 		929B071E235FA57300F3C99A /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 929B071D235FA57300F3C99A /* input.cpp */; };
+		92D56C9F236A552B004BE628 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C9E236A552B004BE628 /* utils.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +67,7 @@
 		929B071A235FA10C00F3C99A /* game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = game.cpp; path = source/src/game.cpp; sourceTree = SOURCE_ROOT; };
 		929B071C235FA43900F3C99A /* input.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
 		929B071D235FA57300F3C99A /* input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
+		92D56C9E236A552B004BE628 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 		929B0715235F98FD00F3C99A /* src */ = {
 			isa = PBXGroup;
 			children = (
+				92D56C9E236A552B004BE628 /* utils.cpp */,
 				9231D3872360EE3B00CCFB8C /* tinyxml2.cpp */,
 				929B0716235F993B00F3C99A /* graphics.cpp */,
 				929B0709235F913C00F3C99A /* main.cpp */,
@@ -235,7 +238,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 929B0701235F913C00F3C99A /* Build configuration list for PBXProject "cavestory_demo" */;
+			buildConfigurationList = 929B0701235F913C00F3C99A /* Build configuration list for PBXProject "ArenaGame" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -263,6 +266,7 @@
 				9231D3912360FCE800CCFB8C /* tile.cpp in Sources */,
 				9231D3802360CE8800CCFB8C /* level.cpp in Sources */,
 				929B071E235FA57300F3C99A /* input.cpp in Sources */,
+				92D56C9F236A552B004BE628 /* utils.cpp in Sources */,
 				9231D378235FDEC200CCFB8C /* animatedsprite.cpp in Sources */,
 				929B071B235FA10C00F3C99A /* game.cpp in Sources */,
 				9286B681235FC8E1006E3FA6 /* sprite.cpp in Sources */,
@@ -415,7 +419,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		929B0701235F913C00F3C99A /* Build configuration list for PBXProject "cavestory_demo" */ = {
+		929B0701235F913C00F3C99A /* Build configuration list for PBXProject "ArenaGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				929B070B235F913C00F3C99A /* Debug */,

@@ -35,7 +35,7 @@
             BlueprintIdentifier = "929B0705235F913C00F3C99A"
             BuildableName = "cavestory_demo"
             BlueprintName = "cavestory_demo"
-            ReferencedContainer = "container:cavestory_demo.xcodeproj">
+            ReferencedContainer = "container:ArenaGame.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -47,7 +47,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/majula/Desktop/cavestory_demo"
+      customWorkingDirectory = "/Users/majula/Desktop/ArenaGame"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -59,7 +59,7 @@
             BlueprintIdentifier = "929B0705235F913C00F3C99A"
             BuildableName = "cavestory_demo"
             BlueprintName = "cavestory_demo"
-            ReferencedContainer = "container:cavestory_demo.xcodeproj">
+            ReferencedContainer = "container:ArenaGame.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
