@@ -27,12 +27,12 @@ unsigned int Utils::split(const std::string &txt, std::vector<std::string> &strs
 
 std::string Utils::GetWorkingPath()
 {
-	char temp[256];
-	#ifdef _WIN32
-		return (_getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
-	#elif __APPLE__
-		return (getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
-	#endif
+  char temp[256];
+  #ifdef _WIN32
+    return (_getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
+  #elif __APPLE__
+    return (getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
+  #endif
 }
 
 
