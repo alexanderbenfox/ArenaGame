@@ -50,3 +50,10 @@ std::string Utils::CorrectPathForSystem(const char* path)
 #endif
   return path;
 }
+
+Point2D<int> Utils::Conver2DToIso(int x, int y)
+{
+  int tmpX = x - y;
+  int tmpY = (double)(x + y) * 0.5;
+  return Point2D<int>(tmpX, tmpY);
+}

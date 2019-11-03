@@ -4,13 +4,19 @@
 #include <map>
 #include <SDL2/SDL.h>
 
+enum class InputResult
+{
+  SHUTDOWN,
+  NONE
+};
+
 class Input {
 public:
 	/*
 	 * void beginNewFrame
 	 * Called at beginning of each new frame to reset processed key presses
 	 */
-	void beginNewFrame();
+  InputResult beginNewFrame(SDL_Event* event);
 	
 	/*
 	 * void keyUpEvent

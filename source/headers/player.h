@@ -5,6 +5,7 @@
 #include "animatedsprite.h"
 
 class Graphics;
+class Input;
 
 class Player : public AnimatedSprite {
 public:
@@ -12,6 +13,8 @@ public:
 	Player(Graphics &graphics, Vector2 spawnPoint);
 	void draw(Graphics &graphics);
 	void update(float elapsedTime);
+
+  void HandleInput(Input& input);
 	
 	/*
 	 * void moveLeft
@@ -24,6 +27,9 @@ public:
 	 * Moves player right by +(_dx)
 	 */
 	void moveRight();
+
+  void moveUp();
+  void moveDown();
 	
 	/*
 	 * void stopMoving

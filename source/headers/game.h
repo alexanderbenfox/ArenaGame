@@ -9,6 +9,13 @@
 #include "level.h"
 
 class Graphics;
+class Input;
+
+enum class GameState
+{
+  PLAYER,
+  NONE
+};
 
 class Game {
 public:
@@ -34,9 +41,17 @@ private:
 	 * Called at end of each frame
 	 */
 	void update(float elapsedTime);
+
+  /*
+   *
+   *
+   */
+  void processInput(Input& input);
 	
 	Player _player;
 	Level _level;
+
+  GameState _gameState;
 };
 
 #endif /* game_h */

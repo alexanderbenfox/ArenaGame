@@ -76,10 +76,15 @@ void Level::loadMap(std::string mapName, Graphics &graphics) {
 			//Get image source for tileset file
 			XMLElement* tilesetNode = ts.FirstChildElement("tileset");
 			const char* source = tilesetNode->FirstChildElement("image")->Attribute("source");
+     
+
+      
 			std::stringstream ss;
 			ss << "./content/tilesets/" << source;
 			
-			SDL_Texture* tex = SDL_CreateTextureFromSurface(graphics.getRenderer(), graphics.loadImage(ss.str()));
+      std::string tlsLocation = Utils::CorrectPathForSystem(ss.str().c_str());
+
+			SDL_Texture* tex = SDL_CreateTextureFromSurface(graphics.getRenderer(), graphics.loadImage(tlsLocation));
 			this->_tilesets.push_back(Tileset(tex, firstgid));
 			
 			pTileset = pTileset->NextSiblingElement("tileset");

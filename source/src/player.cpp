@@ -1,6 +1,7 @@
 #include "graphics.h"
 #include "player.h"
 #include "utils.h"
+#include "input.h"
 
 namespace player_constants {
 	const float WALK_SPEED = 0.2f;
@@ -54,8 +55,19 @@ void Player::moveRight() {
 	this->_facing = RIGHT;
 }
 
+void Player::moveUp() {
+  this->_dy = -player_constants::WALK_SPEED;
+  this->playAnimation(this->_facing == RIGHT ? "RunRight" : "RunLeft");
+}
+
+void Player::moveDown() {
+  this->_dy = player_constants::WALK_SPEED;
+  this->playAnimation(this->_facing == RIGHT ? "RunRight" : "RunLeft");
+}
+
 void Player::stopMoving() {
 	this->_dx = 0.0f;
+  _dy = 0.0f;
 	this->playAnimation(this->_facing == RIGHT ? "IdleRight" : "IdleLeft");
 }
 
@@ -130,10 +142,12 @@ void Player::handleSlopeCollisions(std::vector<Slope> &others) {
 }
 
 void Player::update(float elapsedTime) {
-	//Apply gravity
-	if(this->_dy <= player_constants::GRAVITY_CAP) {
-		this->_dy += player_constants::GRAVITY * elapsedTime;
-	}
+#ifdef GRAVITY
+  //Apply gravity
+  if (this->_dy <= player_constants::GRAVITY_CAP) {
+    this->_dy += player_constants::GRAVITY * elapsedTime;
+  }
+#endif
 	
 	//Move by dx
 	this->_x += this->_dx * elapsedTime; // Move bby a certain amount based off your frame rate
@@ -147,4 +161,28 @@ void Player::draw(Graphics &graphics) {
 	AnimatedSprite::draw(graphics, this->_x, this->_y);
 }
 
+void Player::HandleInput(Input& input)
+{
+  if (input.isKeyHeld(SDL_SCANCODE_LEFT)) {
+    moveLeft();
+  }
+  else if (input.isKeyHeld(SDL_SCANCODE_RIGHT)) {
+    moveRight();
+  }
 
+  if (input.isKeyHeld(SDL_SCANCODE_UP)) {
+    moveUp();
+  }
+  else if (input.isKeyHeld(SDL_SCANCODE_DOWN)) {
+    moveDown();
+  }
+
+  if (input.wasKeyPressed(SDL_SCANCODE_Z) == true) {
+    jump();
+  }
+
+  if (!input.isKeyHeld(SDL_SCANCODE_LEFT) && !input.isKeyHeld(SDL_SCANCODE_RIGHT)
+    && !input.isKeyHeld(SDL_SCANCODE_UP) && !input.isKeyHeld(SDL_SCANCODE_DOWN)) {
+    stopMoving();
+  }
+}

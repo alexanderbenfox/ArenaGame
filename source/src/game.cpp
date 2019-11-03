@@ -11,7 +11,7 @@ namespace {
 	const int MAX_FRAME_TIME = 5 * 1000 / FPS;
 }
 
-Game::Game() {
+Game::Game() : _gameState(GameState::PLAYER) {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	this->gameLoop();
 }
@@ -31,39 +31,8 @@ void Game::gameLoop() {
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 	//Start Game Loop
 	while(true) {
-		input.beginNewFrame();
-		
-		if(SDL_PollEvent(&event)) {
-			if(event.type==SDL_KEYDOWN) {
-				if(event.key.repeat==0){
-					input.keyDownEvent(event);
-				}
-			}
-			else if(event.type==SDL_KEYUP) {
-				input.keyUpEvent(event);
-			}
-			else if(event.type==SDL_QUIT) {
-				return;
-			}
-		}
-		
-		if(input.wasKeyPressed(SDL_SCANCODE_ESCAPE)) {
-			return;
-		}
-		else if (input.isKeyHeld(SDL_SCANCODE_LEFT)) {
-			this->_player.moveLeft();
-		}
-		else if (input.isKeyHeld(SDL_SCANCODE_RIGHT)) {
-			this->_player.moveRight();
-		}
-		
-		if(input.wasKeyPressed(SDL_SCANCODE_Z) == true) {
-			this->_player.jump();
-		}
-		
-		if (!input.isKeyHeld(SDL_SCANCODE_LEFT) && !input.isKeyHeld(SDL_SCANCODE_RIGHT)) {
-			this->_player.stopMoving();
-		}
+    if (input.beginNewFrame(&event) == InputResult::SHUTDOWN) return;
+    processInput(input);
 		
 		const int CURR_TIME_MS = SDL_GetTicks();
 		int ELAP_TIME_MS = CURR_TIME_MS - LAST_UPDATE_TIME;
@@ -87,6 +56,8 @@ void Game::update(float elapsedTime) {
 	this->_player.update(elapsedTime);
 	this->_level.update(elapsedTime);
 	
+
+#ifdef COLLISION
 	std::vector<Rectangle> others;
 	if((others = this->_level.checkTileCollisions(this->_player.getBoundingBox())).size() > 0) {
 		//Player collided with atleast one tile
@@ -98,5 +69,14 @@ void Game::update(float elapsedTime) {
 	if ((otherSlopes = this->_level.checkSlopeCollisions(this->_player.getBoundingBox())).size() > 0) {
 		this->_player.handleSlopeCollisions(otherSlopes);
 	}
+#endif
+}
+
+void Game::processInput(Input& input)
+{
+  if (_gameState == GameState::PLAYER)
+  {
+    _player.HandleInput(input);
+  }
 }
 

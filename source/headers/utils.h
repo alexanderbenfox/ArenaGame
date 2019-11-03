@@ -9,6 +9,29 @@
 #include <string>
 #include <vector>
 
+template<typename T>
+class Point2D
+{
+public:
+  Point2D() = default;
+  Point2D(T x, T y) : _x(x), _y(y) {}
+
+  Point2D operator+(const Point2D<T>& pt)
+  {
+    return Point2D<T>(pt._x + _x, pt._y + _y);
+  }
+
+  T X() { return _x; }
+  T Y() { return _y; }
+
+private:
+  T _x;
+  T _y;
+
+  friend class Point2D<T>;
+
+};
+
 class Utils {
 public:
 	
@@ -22,6 +45,8 @@ public:
   static std::string GetWorkingPath();
 
   static std::string CorrectPathForSystem(const char* path);
+
+  static Point2D<int> Conver2DToIso(int x, int y);
 	
 };
 

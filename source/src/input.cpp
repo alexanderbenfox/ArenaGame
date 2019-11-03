@@ -6,9 +6,28 @@
  - Keeps track of keyboard state
  */
 
-void Input::beginNewFrame() {
+InputResult Input::beginNewFrame(SDL_Event* event) {
 	this->_pressedKeys.clear();
 	this->_releasedKeys.clear();
+
+  //get new key states
+  if (SDL_PollEvent(event)) {
+    if (event->type == SDL_KEYDOWN) {
+      if (event->key.repeat == 0) {
+        keyDownEvent(*event);
+      }
+    }
+    else if (event->type == SDL_KEYUP) {
+      keyUpEvent(*event);
+    }
+    else if (event->type == SDL_QUIT) {
+      return InputResult::SHUTDOWN;
+    }
+  }
+
+  if (wasKeyPressed(SDL_SCANCODE_ESCAPE))
+    return InputResult::SHUTDOWN;
+  return InputResult::NONE;
 }
 
 void Input::keyDownEvent(const SDL_Event& event) {
